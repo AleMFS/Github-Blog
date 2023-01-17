@@ -10,41 +10,43 @@ import { HomeContainer } from "./styles";
 
 export function Home() {
 
-  
+
 
     const [publication, setPublication] = useState<PublicationCardType[]>([])
     const [publicationCount, setPublicationCount] = useState(0)
     const [search, setSearch] = useState('')
 
-    function searchPublication(value:string){
+    function searchPublication(value: string) {
         setSearch(value)
-        
     }
-    
+
 
     async function getUserProfile() {
         const response = await api.get(
-            `search/issues?q=${search}%20repo:${nameGithub}/Github-Blog`
-         
+            `search/issues?q=${search ? search : ''}%20repo:${nameGithub}/Github-Blog`
+
         )
         setPublication(response.data.items)
-        setPublicationCount(response.data.total_count)        
+        setPublicationCount(response.data.total_count)
     }
-   
 
+    console.log(search)
     useEffect(() => {
+
         getUserProfile()
 
-    }, [search])
-   
 
-   
+
+    }, [search])
+
+
+
     return (
         <HomeContainer>
             <Profile />
-            <Search publicationCount={publicationCount} Search={searchPublication}/>
-            <Posts  data={publication}/>
-            
+            <Search publicationCount={publicationCount} Search={searchPublication} />
+            <Posts data={publication} />
+
         </HomeContainer>
     )
 }

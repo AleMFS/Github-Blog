@@ -1,24 +1,31 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { useForm } from "react-hook-form";
+
 import { SearchContainer } from "./styles";
 
 interface publicationCountProps {
     publicationCount: number
-    Search: (value: any) => void
+    Search: (value: string) => void
 }
-interface FormState {
-    text: string;
-  }
+
 
 export function Search({ publicationCount, Search }: publicationCountProps) {
-    const [state, setState] = useState<FormState>({ text: '' });
+    const [state, setState] = useState('');
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-      event.preventDefault();
-      Search(state.text)
+    function handleSubmit() {       
+        Search(state)
+        
     }
+    function changevoid(value:string){
+        setState(value)
 
-   
+        if(value == ''){
+            handleSubmit()
+        } 
+
+        
+    }
+    
+
 
     return (
 
@@ -27,15 +34,15 @@ export function Search({ publicationCount, Search }: publicationCountProps) {
                 <span>Publicações</span>
                 <span>{publicationCount} publicações</span>
             </div>
-            <form onSubmit={handleSubmit}>
-                
-                    <input 
+            <form /* onSubmit={handleSubmit}*/>
+
+                <input
                     type="text"
-                     placeholder="Buscar conteúdo" 
-                     value={state.text} 
-                     onChange={e => setState({ text: e.target.value })} />
-                
-                <button type="submit">Salvar</button>
+                    placeholder="Buscar conteúdo"
+                    value={state}
+                    onChange={e => changevoid(e.target.value)} />
+
+                <button type="button" onClick={handleSubmit}>Salvar</button>
             </form>
         </SearchContainer>
     )
