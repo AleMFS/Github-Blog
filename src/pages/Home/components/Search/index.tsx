@@ -16,12 +16,7 @@ export function Search({ publicationCount, Search }: publicationCountProps) {
         
     }
     function changevoid(value:string){
-        setState(value)
-
-        if(value == ''){
-            handleSubmit()
-        } 
-
+        setState(value)    
         
     }
     

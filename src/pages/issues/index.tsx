@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { api } from "../../libs/axios";
 import { PublicationType } from "../../@types/Publication";
 import { dateFormatter } from "../../utils/formatter";
+import ReactMarkdown from 'react-markdown';
+import { PostContent } from "./PostContent";
 
 export function Issues() {
     const { id } = useParams()
@@ -60,6 +62,8 @@ export function Issues() {
                     </div>
                 </InfoPostCard>
             </PostCardHeader>
+            <PostContent body={publication?.body}/>
+
 
         </PostCardContainer>
     )
