@@ -30,14 +30,15 @@ export function Home() {
         setPublicationCount(response.data.total_count)
     }
 
-    console.log(search)
+
     useEffect(() => {
+
 
         getUserProfile()
 
-
-
     }, [search])
+
+ 
 
 
 

@@ -37,7 +37,7 @@ export function Search({ publicationCount, Search }: publicationCountProps) {
                     value={state}
                     onChange={e => changevoid(e.target.value)} />
 
-                <button type="button" onClick={handleSubmit}>Salvar</button>
+                <button type="button" onClick={handleSubmit}>Buscar</button>
             </form>
         </SearchContainer>
     )
